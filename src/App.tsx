@@ -29,11 +29,11 @@ function App(): JSX.Element {
     return calcFib(n - 1) + calcFib(n - 2);
   }
 
-  useEffect(() => {
-    if (fileHandlerModule) {
-      setFileHandler(new fileHandlerModule.FileHandler());
-    }
-  }, [renderCount]);
+  // useEffect(() => {
+  //   if (fileHandlerModule) {
+  //     setFileHandler(new fileHandlerModule.FileHandler());
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (fileHandlerModule) {
@@ -56,21 +56,19 @@ function App(): JSX.Element {
     id: string,
     phase: string,
     actualDuration: number,
-    baseDuration: number
-    // startTime: number,
-    // commitTime: number,
-    // interactions: any
+    baseDuration: number,
+    startTime: number,
+    commitTime: number,
+    interactions: any
   ) {
-    if (phase === 'mount') {
-      console.log(
-        `time:${actualDuration}`,
-        `phase:${phase}`,
-        `baseDuration:${baseDuration}`
-        // `starttime:${startTime}`,
-        // `commitTime:${commitTime}`,
-        // `interactions:${interactions}`,
-      );
-    }
+    console.log(
+      `time:${actualDuration}`,
+      `phase:${phase}`,
+      `baseDuration:${baseDuration}`,
+      `starttime:${startTime}`,
+      `commitTime:${commitTime}`,
+      `interactions:${interactions}`
+    );
   }
 
   return (
@@ -94,13 +92,13 @@ function App(): JSX.Element {
       >
         rerender
       </button>
-      <Profiler id="App" onRender={onRendr}>
-        <SectraTheme>
+      <SectraTheme render={renderCount}>
+        <Profiler id="App" onRender={onRendr}>
           <div style={{ display: 'flex' }}>
             <Layout fileHandler={fileHandler} />
           </div>
-        </SectraTheme>
-      </Profiler>
+        </Profiler>
+      </SectraTheme>
     </div>
   );
 }

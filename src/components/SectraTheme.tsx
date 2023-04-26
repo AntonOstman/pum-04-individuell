@@ -35,6 +35,7 @@ declare module '@mui/material/styles' {
  */
 export interface SectraThemeProps {
   children: React.ReactNode;
+  render: number;
 }
 
 /**
@@ -60,7 +61,7 @@ export default function SectraTheme(props: SectraThemeProps): JSX.Element {
   });
 
   const [theme, setTheme] = useState<Theme>(defaultTheme);
-  const { children } = props;
+  const { children, render } = props;
 
   useEffect(() => {
     const muiTheme = document.querySelector('.mui-theme');

@@ -8,7 +8,7 @@
 #include <limits>
 #include <map>
 
-#define DEBUG
+// #define DEBUG
 
 void FileHandler::AddFile(std::string file, std::string file_name)
 {

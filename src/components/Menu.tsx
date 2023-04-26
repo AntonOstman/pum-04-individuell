@@ -2,6 +2,7 @@
  * @file Contains the menu component which is the top Appbar containing the dropdown and the legend bar
  */
 import React, { useEffect, useState, Dispatch } from 'react';
+import now from 'performance-now';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -164,10 +165,13 @@ export default function Menu(props: MenuProps) {
 
   // get site names and metrics from backend when files are added to the backend
   useEffect(() => {
+    const start = now();
     fileHandler?.ComputeFiles();
 
     setSites(getSites(fileHandler));
     setMetrics(getMetrics(fileHandler));
+    const end = now();
+    console.log(`file time:${end - start} ms`);
   }, [oldFiles]);
 
   const handleDrawerOpen = () => {
